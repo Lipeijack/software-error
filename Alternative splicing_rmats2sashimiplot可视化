@@ -1,0 +1,42 @@
+conda install rmats2sashimiplot
+运行(rnaseq) [shaol2@cn3096 024UTvsTR]$ rmats2sashimiplot --b1 ../024UTAligned.sortedByCoord.out.bam --b2 ../024TRAligned.sortedByCoord.out.bam -t SE -e SE.MATS.JC.txt --l1 024UT --l2 024TR --exon_s 1 --intron_s 1 -o UT_vs_TR_SEplot --group-info grouping.gf 
+Traceback (most recent call last):
+  File "/data/shaol2/conda/envs/rnaseq/bin/rmats2sashimiplot", line 7, in <module>
+    from rmats2sashimiplot.rmats2sashimiplot import main
+  File "/data/shaol2/conda/envs/rnaseq/lib/python2.7/site-packages/rmats2sashimiplot/rmats2sashimiplot.py", line 7, in <module>
+    import pysam
+  File "/data/shaol2/conda/envs/rnaseq/lib/python2.7/site-packages/pysam/__init__.py", line 5, in <module>
+    from pysam.libchtslib import *
+ImportError: libhts.so.2: cannot open shared object file: No such file or directory
+(rnaseq) [shaol2@cn3096 024UTvsTR]$ rmats2sashimiplot --help
+Traceback (most recent call last):
+  File "/data/shaol2/conda/envs/rnaseq/bin/rmats2sashimiplot", line 7, in <module>
+    from rmats2sashimiplot.rmats2sashimiplot import main
+  File "/data/shaol2/conda/envs/rnaseq/lib/python2.7/site-packages/rmats2sashimiplot/rmats2sashimiplot.py", line 7, in <module>
+    import pysam
+  File "/data/shaol2/conda/envs/rnaseq/lib/python2.7/site-packages/pysam/__init__.py", line 5, in <module>
+    from pysam.libchtslib import *
+ImportError: libhts.so.2: cannot open shared object file: No such file or directory
+会出现上述error；
+
+Google：
+other guys also encounter this error:
+ubuntu 16.04 报错：error while loading shared libraries: libgsl.so.0: cannot open shared object file: No such file or directory
+这是因为ubuntu 16.04不支持libgsl0ldbl，而是替换为libgsl2，所以先安装libgsl2，然后在将其软链接/复制到/usr/lib目录下
+以上办法不可行。。。。
+
+
+(rnaseq) [shaol2@cn0877 ~]$ conda install -y rmats2sashimiplot=2.0.4=py27h21c881e_2 
+#指定版本和python版本
+(rnaseq) [shaol2@cn0877 ~]$ rmats2sashimiplot 
+usage: rmats2sashimiplot [-h] --l1 L1 --l2 L2 -o OUT_DIR
+                         [-t {SE,A5SS,A3SS,MXE,RI}] [-e EVENTS_FILE]
+                         [-c COORDINATE] [--s1 S1] [--s2 S2] [--b1 B1]
+                         [--b2 B2] [--exon_s EXON_S] [--intron_s INTRON_S]
+                         [--group-info GROUP_INFO] [--min-counts MIN_COUNTS]
+                         [--color COLOR] [--font-size FONT_SIZE]
+                         [--hide-number] [--no-text-background]
+rmats2sashimiplot: error: argument --l1 is required
+#然后就发现可以正常运行了。。。。估计就是各种依赖软件包之间不兼容。。。
+
+
