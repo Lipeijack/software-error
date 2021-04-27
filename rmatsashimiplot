@@ -1,0 +1,14 @@
+(rnaseq) [shaol2@cn3206 032]$ rmats2sashimiplot --b1 032-1-UTAligned.sortedByCoord.out.bam --b2 032-2-TRAligned.sortedByCoord.out.bam -t SE -e CCNL2_SE.MATS.JC.txt --l1 utr --l2 tr --exon_s 1 --intron_s 1 -o ./CCNL_SEplot --group-info grouping.gf 
+Indexing '032-1-UTAligned.sortedByCoord.out.bam'.
+Indexing '032-2-TRAligned.sortedByCoord.out.bam'.
+list index out of range
+There is an exception in plot_with_eventsfile
+Traceback (most recent call last):
+  File "/data/shaol2/conda/envs/rnaseq/bin/rmats2sashimiplot", line 11, in <module>
+    sys.exit(main())
+  File "/data/shaol2/conda/envs/rnaseq/lib/python2.7/site-packages/rmats2sashimiplot/rmats2sashimiplot.py", line 877, in main
+    plot_with_eventsfile(options)
+  File "/data/shaol2/conda/envs/rnaseq/lib/python2.7/site-packages/rmats2sashimiplot/rmats2sashimiplot.py", line 577, in plot_with_eventsfile
+    gene_symbol = items[2]
+IndexError: list index out of range
+
